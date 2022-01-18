@@ -7,12 +7,9 @@ class Repository
     public function save(string $file, AbstractModel $model)
     {
         $fileData = file_get_contents($file);
-
         $className = get_class($model);
         $data = json_decode($fileData, true);
-
         $lastId = 1;
-
         $modelData = $model->getData();
 
         if (isset($modelData['id'])) {
@@ -71,7 +68,9 @@ class Repository
         foreach ($fileData[$className] as $key => $data) {
 
             $data['id'] = $key;
-            $result[$key] = new $model($data);
+            $tmpModel = new $model();
+            $tmpModel->setData($data);
+            $result[$key] = $tmpModel;
         }
         return $result;
     }
