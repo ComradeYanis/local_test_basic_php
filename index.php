@@ -27,6 +27,7 @@ $repo->save($fileName, $user_1);
 
 $user_new = new User();
 $user_new->setData(['name' => 'Yanis', 'sec_n' => 'Yeltsyn']);
+$user_new->telephone = 'NETU!';
 print_data($user_new);
 $repo->save($fileName, $user_new);
 
